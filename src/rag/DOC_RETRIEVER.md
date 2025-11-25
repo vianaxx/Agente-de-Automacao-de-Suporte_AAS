@@ -33,7 +33,7 @@ Esta função encapsula a lógica de inicialização e configuração do mecanis
 def get_retriever() -> VectorStoreRetriever:
     """Carrega o Vector DB e retorna um retriever"""
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"  # Use full path
+        model_name="sentence-transformers/all-MiniLM-L6-v2" 
     )
 ```
 
