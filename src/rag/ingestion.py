@@ -19,21 +19,21 @@ def ingest_data():
     loader = DirectoryLoader(DATA_PATH, glob="**/*.md")
     documents = loader.load()
 
-    # Breaks documents into smaller chunks (500 characters each with 50 character overlap)
+    # Divide documentos em partes menores (500 caracteres cada com 50 caracteres de sobreposição).
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-    #The overlap ensures context isn't lost at chunk boundaries—each chunk includes the last 50 characters of the previous chunk.
+    # A sobreposição garante que o contexto não seja perdido nos limites entre os blocos — cada bloco inclui os últimos 50 caracteres do bloco anterior.
     texts = text_splitter.split_documents(documents)
 
     print(f"{len(texts)} documentos carregados")
 
     print("---2 - Criando embeddings com Hugging Face ---")
 
-    # Use Hugging Face for embeddings (downloads model on first run)
+    # Usa o Hugging Face para gerar embeddings (o modelo é baixado na primeira execução).
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
-    # Store vectors in Chroma
+    # Armazena os vetores no 
     vector_store = Chroma.from_documents(
         texts,
         embeddings,
