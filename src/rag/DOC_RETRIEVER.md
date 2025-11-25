@@ -2,7 +2,7 @@ Este script é a **Recuperação** (usando o banco de dados para buscar contexto
 
 -----
 
-## 🚀 Mecanismo de Recuperação (The Retriever)
+## Mecanismo de Recuperação (The Retriever)
 
 O objetivo principal deste código é carregar o banco de dados vetorial que foi criado na etapa anterior(ingestion.py) e transformá-lo em um objeto **`Retriever`**. Um Retriever é uma interface do LangChain que sabe como pegar uma consulta de usuário e buscar documentos relevantes no banco de dados para usá-los como contexto.
 
@@ -23,7 +23,7 @@ CHROMA_PATH = "data/vector_db"
 
 -----
 
-## 🧠 Função `get_retriever()`: Passo a Passo
+## Função `get_retriever()`: Passo a Passo
 
 Esta função encapsula a lógica de inicialização e configuração do mecanismo de busca.
 
@@ -69,7 +69,7 @@ def get_retriever() -> VectorStoreRetriever:
 
 -----
 
-## 🎯 Aplicação no Fluxo RAG
+## Aplicação no Fluxo RAG
 
 Quando este `get_retriever()` é chamado no seu aplicativo RAG (por exemplo, dentro de um Chain), ele executa os seguintes passos invisíveis para o usuário final:
 
