@@ -7,7 +7,7 @@ CHROMA_PATH = "data/vector_db"
 def get_retriever() -> VectorStoreRetriever:
     """Carrega o Vector DB e retorna um retriever"""
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"  # Use full path
+        model_name="sentence-transformers/all-MiniLM-L6-v2" 
     )
 
     vectorstore = Chroma(
