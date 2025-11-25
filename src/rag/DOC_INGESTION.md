@@ -2,9 +2,9 @@ Esse script em Python é um **pipeline de Ingestão de Dados (criação do banco
 
 -----
 
-## 🛠️ Visão Geral do Mecanismo
+## Visão Geral do Mecanismo
 
-O principal objetivo do script é pegar documentos de texto (arquivos Markdown) e transformá-los em uma representação numérica (*vetores* ou *embeddings*) para que possam ser facilmente pesquisados e recuperados por um modelo de Linguagem Grande (LLM) posteriormente.
+O principal objetivo do script é pegar documentos de texto (arquivos Markdown) e transformá-los em uma representação numérica (*vetores* ou *embeddings*) para que possam ser facilmente pesquisados e recuperados por um Large Language Model (LLM) posteriormente.
 
 Ele segue três etapas principais:
 
@@ -14,7 +14,7 @@ Ele segue três etapas principais:
 
 -----
 
-## 🔍 Explicação Detalhada do Código
+## Explicação Detalhada do Código
 
 ### 1\. Configurações Iniciais e Imports
 
@@ -60,9 +60,9 @@ def ingest_data():
 #### B. Divisão do Texto em Pedaços (Chunking)
 
 ```python
-    # Breaks documents into smaller chunks (500 characters each with 50 character overlap)
+    # Divide documentos em partes menores (500 caracteres cada com 50 caracteres de sobreposição)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-    #The overlap ensures context isn't lost at chunk boundaries—each chunk includes the last 50 characters of the previous chunk.
+    # A sobreposição garante que o contexto não seja perdido nos limites entre os blocos — cada bloco inclui os últimos 50 caracteres do bloco anterior.
     texts = text_splitter.split_documents(documents)
 
     print(f"{len(texts)} documentos carregados")
@@ -79,12 +79,12 @@ def ingest_data():
 ```python
     print("---2 - Criando embeddings com Hugging Face ---")
 
-    # Use Hugging Face for embeddings (downloads model on first run)
+    # Usa o Hugging Face para gerar embeddings (o modelo é baixado na primeira execução).
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
-    # Store vectors in Chroma
+    # Armazena os vetores no Chroma
     vector_store = Chroma.from_documents(
         texts,
         embeddings,
@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
 -----
 
-## 💡 Resumo do Fluxo de Recuperação (RAG)
+## Resumo do Fluxo de Recuperação (RAG)
 
 Quando você for usar esse DB em um script de resposta:
 
